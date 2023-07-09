@@ -8,6 +8,40 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  var num1=0,num2=0,sum=0;
+
+   final TextEditingController t1 = TextEditingController(text: "0");
+   final TextEditingController t2 = TextEditingController(text: "0");
+
+  void doAdition(){
+    setState(() {
+      num1 = int.parse(t1.text);
+      num2 = int.parse(t2.text);
+      sum = num1 + num2;
+    });
+  }
+  void doSubtraction(){
+    setState(() {
+      num1 = int.parse(t1.text);
+      num2 = int.parse(t2.text);
+      sum = num1 - num2;
+    });
+  }
+  void doMultiplication(){
+    setState(() {
+      num1 = int.parse(t1.text);
+      num2 = int.parse(t2.text);
+      sum = num1 * num2;
+    });
+  }
+  void doDivision(){
+    setState(() {
+      num1 = int.parse(t1.text);
+      num2 = int.parse(t2.text);
+      sum = num1 ~/ num2;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,13 +58,19 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Text("Output :$sum",
+              style: TextStyle(fontWeight:FontWeight.bold,
+              color: Colors.purple,
+              fontSize: 20.0),),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: TextField(
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
-                    hintText: "Enter Number 1"
+                    hintText: "Enter Number 1",
+
                   ),
+                  controller: t1,
                 ),
               ),
               Padding(
@@ -40,6 +80,7 @@ class _HomePageState extends State<HomePage> {
                   decoration: InputDecoration(
                     hintText: "Enter Number 2"
                   ),
+                    controller: t2,
                 ),
               ),
               Padding(
@@ -47,8 +88,8 @@ class _HomePageState extends State<HomePage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    ElevatedButton(onPressed:()=>{}, child: Text("Addition")),
-                    ElevatedButton(onPressed:()=>{}, child: Text("Subtraction")),
+                    ElevatedButton(onPressed:doAdition, child: Text("Addition")),
+                    ElevatedButton(onPressed:doSubtraction, child: Text("Subtraction")),
 
                   ],
                 ),
@@ -57,8 +98,8 @@ class _HomePageState extends State<HomePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  ElevatedButton(onPressed:()=>{}, child: Text("Multiplication")),
-                  ElevatedButton(onPressed:()=>{}, child: Text("Division")),
+                  ElevatedButton(onPressed:doMultiplication, child: Text("Multiplication")),
+                  ElevatedButton(onPressed:doDivision, child: Text("Division")),
 
                 ],
               )
